@@ -26,7 +26,14 @@
         .hero-font { font-family: 'Playfair Display', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
         .amber-glow { box-shadow: 0 0 25px -5px rgb(245 158 11 / 0.5); }
-        .form-mimic { background: #111827; border: 1px solid #334155; }
+        .form-mimic { 
+            background: #0f0f0f; 
+            border: 1px solid #3f3f3f; 
+        }
+        .field-bg {
+            background: #1a1a1a;
+            border: 1px solid #333;
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
@@ -71,7 +78,7 @@
         </div>
     </section>
 
-    <!-- Form Preview (FIXED) -->
+    <!-- Form Preview - Matches Real App -->
     <section class="py-24 bg-zinc-950">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
@@ -79,54 +86,70 @@
                 <p class="text-zinc-400">Fill the details once. Get a personalized proposal built to win.</p>
             </div>
            
-            <div class="form-mimic rounded-3xl p-8 md:p-12 shadow-2xl">
-                <p class="text-amber-400 mb-8 text-center">👇 This is exactly what you'll see inside the app</p>
+            <div class="form-mimic rounded-2xl p-6 md:p-8 shadow-2xl">
+                <p class="text-amber-400 mb-6 text-center text-sm">👇 This is exactly what you'll see inside the app</p>
                 
-                <div class="space-y-6 opacity-90 pointer-events-none select-none">
-                    <!-- Client / Project name -->
+                <div class="space-y-5 pointer-events-none select-none">
+                    
+                    <!-- CLIENT NAME -->
                     <div>
-                        <label class="block text-sm text-zinc-400 mb-2 text-left">Client / Project Name</label>
-                        <div class="h-12 bg-zinc-900/80 border border-zinc-700 rounded-2xl px-4 flex items-center text-zinc-500 text-sm">
-                            e.g. Acme Corp website redesign
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">CLIENT NAME</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center text-zinc-500 text-sm">
+                            <!-- empty -->
                         </div>
                     </div>
 
-                    <!-- Two columns -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm text-zinc-400 mb-2 text-left">Service Type</label>
-                            <div class="h-12 bg-zinc-900/80 border border-zinc-700 rounded-2xl px-4 flex items-center text-zinc-500 text-sm">
-                                Web design / Consulting / etc.
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-zinc-400 mb-2 text-left">Budget</label>
-                            <div class="h-12 bg-zinc-900/80 border border-zinc-700 rounded-2xl px-4 flex items-center text-zinc-500 text-sm">
-                                $2,500 – $5,000
-                            </div>
+                    <!-- SERVICE TYPE -->
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">SERVICE TYPE</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center justify-between text-zinc-300 text-sm">
+                            <span>Web Design & Development</span>
+                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </div>
                     </div>
 
-                    <!-- Pain points -->
+                    <!-- BUDGET -->
                     <div>
-                        <label class="block text-sm text-zinc-400 mb-2 text-left">Client Pain Points</label>
-                        <div class="h-24 bg-zinc-900/80 border border-zinc-700 rounded-3xl px-4 py-3 text-zinc-500 text-sm leading-relaxed">
-                            Current site is slow, hard to update, and not converting leads…
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">BUDGET</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center text-zinc-500 text-sm">
+                            <!-- empty -->
                         </div>
                     </div>
 
-                    <!-- Your strengths -->
+                    <!-- TIMELINE -->
                     <div>
-                        <label class="block text-sm text-zinc-400 mb-2 text-left">Your Strengths / Background</label>
-                        <div class="h-24 bg-zinc-900/80 border border-zinc-700 rounded-3xl px-4 py-3 text-zinc-500 text-sm leading-relaxed">
-                            5+ years building high-converting sites for service businesses. Past results: +40% conversion…
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">TIMELINE</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center text-zinc-500 text-sm">
+                            <!-- empty -->
                         </div>
                     </div>
+
+                    <!-- CLIENT'S PAIN POINTS -->
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">CLIENT'S PAIN POINTS</label>
+                        <div class="field-bg rounded-lg px-3 py-3 text-zinc-500 text-sm min-h-[90px] relative">
+                            <span class="text-zinc-500">What problems is the client trying to solve? What are their frustrations?</span>
+                            <div class="absolute bottom-2 right-3 text-xs text-zinc-600">0/500</div>
+                        </div>
+                    </div>
+
+                    <!-- YOUR BACKGROUND & STRENGTHS -->
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">YOUR BACKGROUND & STRENGTHS</label>
+                        <div class="field-bg rounded-lg px-3 py-3 text-zinc-500 text-sm min-h-[110px] relative">
+                            <span class="text-zinc-500">Your relevant experience, skills, past projects, certifications, or unique strengths that make you the right fit for this client. The AI will weave these into the proposal naturally.</span>
+                            <div class="absolute bottom-2 right-3 text-xs text-zinc-600">0/800</div>
+                        </div>
+                    </div>
+
                 </div>
                
+                <!-- Generate Button -->
                 <a href="https://proposal-forge-black.vercel.app" target="_blank"
-                   class="mt-10 inline-block w-full py-6 bg-amber-500 hover:bg-amber-400 text-black font-semibold text-xl rounded-3xl transition amber-glow text-center">
-                    Try it now — Generate Proposal
+                   class="mt-8 block w-full py-4 bg-amber-500 hover:bg-amber-400 text-black font-semibold text-base rounded-xl transition text-center amber-glow">
+                    Generate Proposal
                 </a>
             </div>
         </div>
