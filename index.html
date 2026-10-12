@@ -6,6 +6,7 @@
     <title>ProposalForge AI — Win More Clients</title>
     <meta name="description" content="AI that learns from every proposal you send. The more you use it, the better it gets at winning clients. 3 free proposals. No card required.">
    
+    <!-- Open Graph / Social Meta Tags -->
     <meta property="og:title" content="I was $242,855 in debt. AI is writing my way out - in public.">
     <meta property="og:description" content="Proposal Forge learns from every proposal you send. 3 free proposals. No card required.">
     <meta property="og:image" content="https://proposal-forge-black.vercel.app/og-image.jpg">
@@ -25,18 +26,19 @@
         .hero-font { font-family: 'Playfair Display', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
         .amber-glow { box-shadow: 0 0 25px -5px rgb(245 158 11 / 0.5); }
-        .form-mimic { background: #0f0f0f; border: 1px solid #3f3f3f; }
-        .field-bg { background: #1a1a1a; border: 1px solid #333; }
-
-        /* ── Proposal Generator (scoped, self-contained) ─────── */
-        .pg-label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; color: #a1a1aa; margin-bottom: 0.4rem; text-transform: uppercase; }
-        .pg-field { width: 100%; background: #0a0a0a; border: 1px solid #333; border-radius: 0.75rem; color: #fff; padding: 0.7rem 0.9rem; font: inherit; font-size: 0.9rem; transition: border-color .15s, box-shadow .15s; }
-        .pg-field::placeholder { color: #52525b; }
-        .pg-field:focus { outline: none; border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245,158,11,.22); }
-        .pg-field.pg-err { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,.18); }
-        select.pg-field { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'><path d='M19 9l-7 7-7-7'/></svg>"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1rem; padding-right: 2.4rem; }
-        textarea.pg-field { resize: vertical; min-height: 96px; }
-        .pg-panel { background: #09090b; border: 1px solid #27272a; border-radius: 1.25rem; padding: 1.25rem; }
+        .form-mimic { 
+            background: #0f0f0f; 
+            border: 1px solid #3f3f3f; 
+        }
+        .field-bg {
+            background: #1a1a1a;
+            border: 1px solid #333;
+        }
+        /* ── Proposal Grader (scoped, self-contained) ─────────── */
+        .pg-input { width: 100%; min-height: 220px; resize: vertical; background: #0a0a0a; border: 1px solid #3f3f3f; border-radius: 1rem; color: #fff; padding: 1rem; font: inherit; font-size: 0.95rem; }
+        .pg-input::placeholder { color: #71717a; }
+        .pg-input:focus { outline: none; border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245,158,11,.25); }
+        .pg-panel { background: #09090b; border: 1px solid #27272a; border-radius: 1.5rem; padding: 1.25rem; }
         @media (min-width: 768px) { .pg-panel { padding: 1.75rem; } }
         .pg-scorecard { background: #09090b; border: 1px solid #27272a; border-radius: 1.5rem; padding: 1.5rem; }
         @media (min-width: 768px) { .pg-scorecard { padding: 2rem; } }
@@ -60,27 +62,10 @@
         .pg-el-hit { border-color: rgba(6,95,70,.6); background: rgba(6,78,59,.15); }
         .pg-el-name { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; color: #71717a; }
         .pg-el-q { font-size: 0.72rem; color: #a1a1aa; margin-top: 4px; }
-        .pg-btn-main { display: inline-block; background: #f59e0b; color: #000; font-weight: 700; padding: 0.85rem 1.6rem; border-radius: 0.9rem; text-decoration: none; transition: background .15s; border: none; cursor: pointer; font-size: 0.95rem; }
+        .pg-btn-main { display: inline-block; background: #f59e0b; color: #000; font-weight: 700; padding: 0.85rem 1.6rem; border-radius: 0.9rem; text-decoration: none; transition: background .15s; }
         .pg-btn-main:hover { background: #fbbf24; }
-        .pg-btn-main:disabled { opacity: 0.4; cursor: not-allowed; }
-        .pg-btn-ghost { display: inline-block; border: 1px solid #3f3f3f; color: #d4d4d8; font-weight: 600; padding: 0.85rem 1.4rem; border-radius: 0.9rem; text-decoration: none; transition: border-color .15s,color .15s; background: transparent; cursor: pointer; font-size: 0.95rem; }
+        .pg-btn-ghost { display: inline-block; border: 1px solid #3f3f3f; color: #d4d4d8; font-weight: 600; padding: 0.85rem 1.4rem; border-radius: 0.9rem; text-decoration: none; transition: border-color .15s,color .15s; }
         .pg-btn-ghost:hover { border-color: #71717a; color: #fff; }
-        .pg-proposal {
-            background: #fafaf7; color: #18181b; border-radius: 1rem; padding: 1.75rem 1.75rem 2rem;
-            font-family: Georgia, 'Times New Roman', serif; font-size: 0.92rem; line-height: 1.65; white-space: pre-wrap;
-            border: 1px solid #e4e4e7; box-shadow: 0 12px 40px -12px rgba(0,0,0,.4);
-        }
-        .pg-proposal h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; color: #0a0a0a; margin: 1.1rem 0 0.5rem; }
-        .pg-proposal strong { color: #0a0a0a; }
-        .pg-toast {
-            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-            background: #18181b; color: #fff; border: 1px solid #3f3f3f; padding: 0.75rem 1.25rem;
-            border-radius: 0.85rem; font-size: 0.85rem; box-shadow: 0 10px 30px -5px rgba(0,0,0,.6);
-            opacity: 0; transition: opacity .25s, transform .25s; z-index: 100; pointer-events: none;
-        }
-        .pg-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-        .pg-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(0,0,0,.25); border-top-color: #000; border-radius: 50%; animation: pgspin .7s linear infinite; vertical-align: -2px; margin-right: 6px; }
-        @keyframes pgspin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
@@ -91,13 +76,10 @@
                 <div class="w-8 h-8 bg-amber-500 rounded-xl flex items-center justify-center text-xl font-bold">🔨</div>
                 <span class="text-2xl font-semibold tracking-tight">ProposalForge</span>
             </div>
-            <div class="flex items-center gap-5">
-                <a href="#forge" class="text-sm font-medium text-zinc-400 hover:text-amber-400 transition hidden sm:inline">Try Free</a>
-                <a href="https://proposal-forge-black.vercel.app" target="_blank"
-                   class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-2xl text-sm transition">
-                    Start Free
-                </a>
-            </div>
+            <a href="https://proposal-forge-black.vercel.app" target="_blank"
+               class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-black font-semibold rounded-2xl text-sm transition">
+                Start Free
+            </a>
         </div>
     </nav>
 
@@ -118,7 +100,7 @@
                 Proposal Forge learns from every proposal you send. The more you use it, the better it gets at winning clients.
                 Built from Trinidad with a 3-hour daily window.
             </p>
-            <a href="#forge"
+            <a href="https://proposal-forge-black.vercel.app" target="_blank"
                class="inline-block px-12 py-6 bg-amber-500 hover:bg-amber-400 text-black font-semibold text-2xl rounded-3xl transition amber-glow w-full max-w-md mx-auto">
                 Generate your first proposal free →
             </a>
@@ -128,74 +110,80 @@
         </div>
     </section>
 
-    <!-- ═══ FREE PROPOSAL GENERATOR (self-contained, runs in browser) ═══ -->
-    <section id="forge" class="py-24 bg-zinc-950" style="scroll-margin-top:90px;">
+    <!-- Form Preview - Matches Real App -->
+    <section class="py-24 bg-zinc-950">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
-                <span class="inline-block bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full mb-4">FREE · NO SIGNUP · RUNS ON YOUR DEVICE</span>
-                <h2 class="text-4xl font-semibold mb-4">Generate a proposal that wins</h2>
-                <p class="text-zinc-400">Fill the details once. The Forge builds a personalized proposal around the Core Doctrine — the 7-element structure that closes clients.</p>
+                <h2 class="text-4xl font-semibold mb-4">See how simple it is</h2>
+                <p class="text-zinc-400">Fill the details once. Get a personalized proposal built to win.</p>
             </div>
-
+           
             <div class="form-mimic rounded-2xl p-6 md:p-8 shadow-2xl">
                 <p class="text-amber-400 mb-6 text-center text-sm">👇 This is exactly what you'll see inside the app</p>
-
-                <form id="forge-form" class="space-y-5" novalidate>
+                
+                <div class="space-y-5 pointer-events-none select-none">
+                    
                     <!-- CLIENT NAME -->
                     <div>
-                        <label for="fg-client" class="pg-label">Client Name</label>
-                        <input id="fg-client" class="pg-field" type="text" placeholder="e.g. Sarah Mitchell" autocomplete="off">
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">CLIENT NAME</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center text-zinc-500 text-sm">
+                            <!-- empty -->
+                        </div>
                     </div>
 
                     <!-- SERVICE TYPE -->
                     <div>
-                        <label for="fg-service" class="pg-label">Service Type</label>
-                        <select id="fg-service" class="pg-field">
-                            <option value="Web Design & Development">Web Design & Development</option>
-                            <option value="SEO & Search Marketing">SEO & Search Marketing</option>
-                            <option value="Copywriting & Content">Copywriting &amp; Content</option>
-                            <option value="Branding & Design">Branding &amp; Design</option>
-                            <option value="Paid Ads / Media Buying">Paid Ads / Media Buying</option>
-                            <option value="Consulting / Coaching">Consulting / Coaching</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <!-- BUDGET + TIMELINE (side by side) -->
-                    <div class="grid sm:grid-cols-2 gap-5">
-                        <div>
-                            <label for="fg-budget" class="pg-label">Budget</label>
-                            <input id="fg-budget" class="pg-field" type="text" placeholder="e.g. $800 – $1,200" autocomplete="off">
-                        </div>
-                        <div>
-                            <label for="fg-timeline" class="pg-label">Timeline</label>
-                            <input id="fg-timeline" class="pg-field" type="text" placeholder="e.g. 2 weeks" autocomplete="off">
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">SERVICE TYPE</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center justify-between text-zinc-300 text-sm">
+                            <span>Web Design & Development</span>
+                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </div>
                     </div>
 
-                    <!-- PAIN POINTS -->
+                    <!-- BUDGET -->
                     <div>
-                        <label for="fg-pain" class="pg-label">Client's Pain Points</label>
-                        <textarea id="fg-pain" class="pg-field" placeholder="What problems is the client trying to solve? What are their frustrations?"></textarea>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">BUDGET</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center text-zinc-500 text-sm">
+                            <!-- empty -->
+                        </div>
                     </div>
 
-                    <!-- BACKGROUND -->
+                    <!-- TIMELINE -->
                     <div>
-                        <label for="fg-bg" class="pg-label">Your Background &amp; Strengths</label>
-                        <textarea id="fg-bg" class="pg-field" placeholder="Your relevant experience, skills, past projects, certifications, or unique strengths that make you the right fit."></textarea>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">TIMELINE</label>
+                        <div class="field-bg h-11 rounded-lg px-3 flex items-center text-zinc-500 text-sm">
+                            <!-- empty -->
+                        </div>
                     </div>
 
-                    <button type="submit" id="fg-submit" class="pg-btn-main w-full !py-4 !text-base amber-glow">
-                        Generate Proposal
-                    </button>
-                    <p id="fg-error" class="text-xs text-red-400 text-center" hidden></p>
-                </form>
+                    <!-- CLIENT'S PAIN POINTS -->
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">CLIENT'S PAIN POINTS</label>
+                        <div class="field-bg rounded-lg px-3 py-3 text-zinc-500 text-sm min-h-[90px] relative">
+                            <span class="text-zinc-500">What problems is the client trying to solve? What are their frustrations?</span>
+                            <div class="absolute bottom-2 right-3 text-xs text-zinc-600">0/500</div>
+                        </div>
+                    </div>
+
+                    <!-- YOUR BACKGROUND & STRENGTHS -->
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1.5 tracking-wide">YOUR BACKGROUND & STRENGTHS</label>
+                        <div class="field-bg rounded-lg px-3 py-3 text-zinc-500 text-sm min-h-[110px] relative">
+                            <span class="text-zinc-500">Your relevant experience, skills, past projects, certifications, or unique strengths that make you the right fit for this client. The AI will weave these into the proposal naturally.</span>
+                            <div class="absolute bottom-2 right-2 text-xs text-zinc-600">0/800</div>
+                        </div>
+                    </div>
+
+                </div>
+               
+                <!-- Generate Button -->
+                <a href="https://proposal-forge-black.vercel.app" target="_blank"
+                   class="mt-8 block w-full py-4 bg-amber-500 hover:bg-amber-400 text-black font-semibold text-base rounded-xl transition text-center amber-glow">
+                    Generate Proposal
+                </a>
             </div>
-
-            <!-- Output -->
-            <div id="fg-output" class="mt-8 space-y-6" aria-live="polite"></div>
-
-            <p class="text-center text-zinc-500 text-xs mt-8">Nothing you type is uploaded or stored — the Forge runs entirely in your browser.</p>
         </div>
     </section>
 
@@ -244,6 +232,279 @@
         </div>
     </section>
 
+    <!-- ═══ FREE PROPOSAL GRADER — interactive Core Doctrine audit (self-contained, no dependencies) ═══ -->
+    <section id="grader" class="py-24 bg-zinc-950 border-t border-zinc-800" style="scroll-margin-top:90px;">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="inline-block bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full mb-4">FREE · NO SIGNUP · RUNS ON YOUR DEVICE</span>
+                <h2 class="text-4xl font-semibold text-white mb-4">Grade Your Last Proposal in 60 Seconds</h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto">Paste the proposal that got ignored. The Grader scores it 1–10 against the same Core Doctrine inside ProposalForge — the behavioral rules, the conversion edits, and the zero-AI-tells audit — then shows you the one fix that moves the score.</p>
+            </div>
+
+            <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-10 shadow-2xl">
+                <label for="pg-input" class="block text-sm font-semibold text-zinc-300 mb-2">Your proposal draft</label>
+                <textarea id="pg-input" class="pg-input" placeholder="Paste the proposal you sent that got no response…"></textarea>
+                <div class="mt-4 flex flex-wrap items-center gap-3">
+                    <button id="pg-grade-btn" class="px-8 py-4 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-2xl transition amber-glow disabled:opacity-40 disabled:cursor-not-allowed" disabled>Run the audit →</button>
+                    <button id="pg-sample-btn" class="px-6 py-4 border border-zinc-700 hover:border-zinc-500 text-zinc-300 font-semibold rounded-2xl transition text-sm">Load a weak example</button>
+                    <span id="pg-wc" class="text-xs text-zinc-500 ml-auto" aria-live="polite">0 words</span>
+                </div>
+                <p id="pg-hint" class="mt-3 text-xs text-amber-400" hidden>Paste at least 10 words to run the audit.</p>
+            </div>
+
+            <div id="pg-results" class="mt-8 space-y-6" aria-live="polite"></div>
+
+            <p class="text-center text-zinc-500 text-xs mt-8">Nothing you paste is uploaded or stored — the audit runs entirely in your browser.</p>
+        </div>
+    </section>
+    <script>
+    (function () {
+        "use strict";
+        /* Core Doctrine engine — mirrors Proposal Forge System v4.0 (Polish v4.0 audit) */
+        var AI_TELLS = ['delve into','leverage','unlock',"in today's fast-paced world",'seamlessly','transform your','harness the power of','game-changer','revolutionize','cutting-edge','robust','empower','synergy','circle back','touch base'];
+        var HEDGES = ['just','maybe','perhaps','i think','hopefully','could','might'];
+        var RISK_REVERSAL_RE = /revise (?:at no|for free)|no additional cost|no extra cost|at no charge|money[- ]back|don'?t pay (?:until|unless|if)|guarantee|if [^.]{0,60}(?:isn'?t|is not|doesn'?t|does not)[^.]{0,40}(?:met|hit|delivered|reached)|risk (?:is|stays) (?:on|with) me|zero risk|at no cost/i;
+        var FILLER_RE = /i hope this (?:email |message )?finds you well/i;
+        var GENERIC_CTA_RE = /let me know if you have any questions/i;
+        var I_FIRST_RE = /^(i|i'?m|im|i'?ve|ive|i am|i have|my name)\b/i;
+
+        function splitSentences(t){ return t.replace(/\s+/g,' ').split(/(?<=[.!?])\s+/).map(function(s){return s.trim();}).filter(Boolean); }
+        function splitParagraphs(t){ return t.split(/\n+/).map(function(p){return p.trim();}).filter(Boolean); }
+        function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+        function gradeProposal(raw){
+            var text = raw.trim();
+            var lower = text.toLowerCase();
+            var words = text.match(/\S+/g) || [];
+            var wordCount = words.length;
+            var sentences = splitSentences(text);
+            var paragraphs = splitParagraphs(text);
+
+            if (wordCount < 40){
+                return { score:2, bandLabel:'Broken', bandAction:'Start over — there is not enough here to audit.', bandCloseRate:'Low', tone:'bad', checks:[], aiTells:[], elementCard:[], readyToSend:false,
+                    weakestFix:'The draft is too short to contain the 7 elements. Rewrite using the 7-Element structure: Hook, Diagnosis, Mechanism, Proof, Scope, Price, Next Step.', wordCount:wordCount };
+            }
+
+            var checks = [], deduction = 0;
+            function add(c){ deduction += c.deduction; checks.push(c); }
+
+            // 1. Zero AI tells
+            var tellsFound = [];
+            for (var i=0;i<AI_TELLS.length;i++){
+                var re = new RegExp(AI_TELLS[i].replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&'),'gi');
+                var m = lower.match(re);
+                if (m && m.length>0) tellsFound.push({phrase:AI_TELLS[i],count:m.length});
+            }
+            var tellHits = tellsFound.reduce(function(s,t){return s+t.count;},0);
+            add({ id:'ai-tells', label:'Zero AI tells', pass:tellsFound.length===0,
+                detail: tellsFound.length===0 ? 'No AI-flagged phrases detected.' : tellsFound.length+' AI-flagged phrase'+(tellsFound.length>1?'s':'')+' found. These trigger client skepticism — rewrite immediately.',
+                deduction: Math.min(tellHits*1.5,3),
+                doctrine:'These phrases signal that a machine wrote this, not a human who understood their problem.' });
+
+            // 2. Never open with "I"
+            var opensWithI = I_FIRST_RE.test(sentences[0]||'');
+            add({ id:'opener', label:'Never open with "I"', pass:!opensWithI,
+                detail: opensWithI ? 'The first sentence opens with "I". "I"-first proposals signal self-focus, not client focus.' : 'The opening leads with the client, not you.',
+                deduction: opensWithI?1:0,
+                doctrine:'You are not hired to talk about yourself. You are hired to solve the pain they are currently experiencing.' });
+
+            // 3. Hook: client's problem first
+            var firstTwo = (sentences[0]||'')+' '+(sentences[1]||'');
+            var hookClientCentered = /\byou\b|\byour\b/i.test(firstTwo);
+            add({ id:'hook', label:'Hook makes the client feel SEEN', pass:hookClientCentered,
+                detail: hookClientCentered ? "The first two sentences speak to the client's situation." : 'The opening never references the client or their problem. Swap in their exact words from the brief.',
+                deduction: hookClientCentered?0:1,
+                doctrine:'Problem-first openings build immediate relevance. The client feels seen before they feel sold.' });
+
+            // 4. "you" not "I" balance
+            var youCount = (text.match(/\byou\b|\byour\b|\byou're\b/gi)||[]).length;
+            var iCount = (text.match(/\bI\b|\bmy\b|\bme\b|\bmine\b/gi)||[]).length;
+            var clientCentered = youCount >= iCount;
+            add({ id:'you-focus', label:'Focus on "you," not "I"', pass:clientCentered,
+                detail: youCount+' client references vs '+iCount+' self-references.',
+                deduction: clientCentered?0:1,
+                doctrine:"Your proposal is a mirror for the client's situation, not a stage for your biography." });
+
+            // 5. Hedge words
+            var hedgeHits = 0;
+            for (var h=0;h<HEDGES.length;h++){
+                var hre = HEDGES[h]==='i think' ? /i think/gi : new RegExp('\\b'+HEDGES[h]+'\\b','gi');
+                var hm = lower.match(hre);
+                hedgeHits += hm ? hm.length : 0;
+            }
+            add({ id:'hedges', label:'No hedge words', pass:hedgeHits===0,
+                detail: hedgeHits===0 ? 'Certainty language throughout ("will" not "could").' : hedgeHits+' hedge word'+(hedgeHits>1?'s':'')+' ("just", "maybe", "could", "might"…) — replace with certainty.',
+                deduction: Math.min(hedgeHits*0.25,1),
+                doctrine:'Hedge words signal amateurism. Certainty signals expertise.' });
+
+            // 6. Risk reversal
+            var hasRiskReversal = RISK_REVERSAL_RE.test(text);
+            add({ id:'risk-reversal', label:'Risk is reversed', pass:hasRiskReversal,
+                detail: hasRiskReversal ? 'Explicit risk reversal found.' : 'No risk reversal. Add one line to scope: "If [key metric] isn\'t met by [milestone], I revise at no cost."',
+                deduction: hasRiskReversal?0:1,
+                doctrine:'Explicit guarantees reduce hesitation. Clients fear making a mistake. Remove that fear, and they move.' });
+
+            // 7. Price: exactly once
+            var priceMatches = text.match(/\$\s?\d[\d,]*(?:\.\d+)?/g) || [];
+            var priceOnce = priceMatches.length===1;
+            add({ id:'price', label:'Single confident price', pass:priceOnce,
+                detail: priceMatches.length===0 ? 'No price found. One confident number with justification signals value.' : priceOnce ? 'One confident price. Single numbers signal value.' : priceMatches.length+' price mentions — multiple mentions signal negotiation.',
+                deduction: priceMatches.length===0 ? 1 : priceOnce ? 0 : 0.5,
+                doctrine:'A clear anchor signals confidence. Ranges invite unnecessary negotiation and signal uncertainty.' });
+
+            // 8. Ending: one expert question
+            var lastSentence = sentences[sentences.length-1] || '';
+            var genericCta = GENERIC_CTA_RE.test(lastSentence);
+            var endsWithQuestion = lastSentence.trim().endsWith('?');
+            var endingPass = endsWithQuestion && !genericCta;
+            add({ id:'ending', label:'Ends with one expert question', pass:endingPass,
+                detail: genericCta ? 'Ends with "Let me know if you have any questions" — instant delete. End with one specific technical question instead.' : endsWithQuestion ? 'Closes with a question that invites dialogue.' : 'No closing question. Give the client a specific question to answer — it lowers the friction of response.',
+                deduction: genericCta ? 1.5 : endsWithQuestion ? 0 : 1,
+                doctrine:'Specific questions encourage dialogue and demonstrate insight. They lower the friction of response.' });
+
+            // 9. Generic filler
+            var hasFiller = FILLER_RE.test(text);
+            add({ id:'filler', label:'No generic filler', pass:!hasFiller,
+                detail: hasFiller ? '"I hope this finds you well" = instant delete. Open with the client\'s problem.' : 'No template filler detected.',
+                deduction: hasFiller?1:0,
+                doctrine:'Overly polished language triggers skepticism. Authentic, concise writing signals effort and builds trust.' });
+
+            // 10. Specific numbers
+            var hasTimeframe = /(?:within|in \d+|\d+\s*(?:hours?|days?|weeks?|months?)|%|\d+x)/i.test(text);
+            var specific = /\d/.test(text) && hasTimeframe;
+            add({ id:'specificity', label:'Specific numbers and timeframes', pass:specific,
+                detail: specific ? 'Concrete numbers and deadlines present.' : 'Add one specific number or timeframe to the mechanism: "within 48 hours" not "soon".',
+                deduction: specific?0:0.5,
+                doctrine:'Specificity creates confidence. Vagueness creates doubt.' });
+
+            // 11. Mobile scan
+            var longParagraph = paragraphs.some(function(p){ return splitSentences(p).length > 3; });
+            var tooLong = wordCount > 400;
+            add({ id:'mobile', label:'Mobile-scan friendly', pass:!longParagraph && !tooLong,
+                detail: tooLong ? wordCount+' words — keep it under 400. The client is scanning on mobile. Sixty seconds max.' : longParagraph ? 'A paragraph runs longer than 3 sentences. Break it into bullets.' : 'Scannable at '+wordCount+' words with short paragraphs.',
+                deduction: tooLong && longParagraph ? 1 : (tooLong||longParagraph) ? 0.5 : 0,
+                doctrine:'Many clients review proposals on mobile. If they cannot scan it in thirty seconds, they will not read it.' });
+
+            var score = Math.max(1, Math.min(10, Math.round(10-deduction)));
+            var band = score>=9 ? {label:'Exceptional',action:'Send immediately.',closeRate:'Strong',tone:'good'}
+                     : score>=7 ? {label:'Strong',action:'Send after quick fixes.',closeRate:'Good',tone:'ok'}
+                     : score>=5 ? {label:'Weak',action:'Do not send. Fix the weakest element.',closeRate:'Moderate',tone:'warn'}
+                     : {label:'Broken',action:'Start over using the 7-Element structure.',closeRate:'Low',tone:'bad'};
+
+            var hasBullets = /^\s*[-•*]\s+/m.test(text);
+            var elementCard = [
+                { element:'HOOK', question:'Did I lead with the hidden problem framed as loss? (2 sentences)', present: hookClientCentered && !opensWithI },
+                { element:'DIAGNOSIS', question:"Did I restate the client's words? (3–4 sentences)", present: /you (?:told|mentioned|said)|your (?:current|last|team|retention|traffic|process|audience)|as you (?:said|mentioned)/i.test(text) },
+                { element:'MECHANISM', question:'Did I explain HOW in 3 steps? (4–5 sentences)', present: /first,|step 1|my process|the process|the system|framework|here'?s how/i.test(text) },
+                { element:'PROOF', question:'Did I cite one specific result? (2 sentences)', present: /%|\d+x|from \d+ to \d+|increased|improved|grew|result/i.test(text) },
+                { element:'SCOPE', question:'Did I list exact deliverables with deadlines + risk reversal? (5–7 bullets)', present: hasBullets || /deliverables?|timeline|what this (?:does )?(?:not )?include/i.test(text) },
+                { element:'PRICE', question:'Did I give one confident number with loss/gain justification? (1 sentence)', present: priceMatches.length===1 },
+                { element:'NEXT STEP', question:'Did I ask for a yes/no response + expert question? (1 sentence)', present: endingPass || /reply|book|schedule|respond|say yes/i.test(text) }
+            ];
+
+            var weakest = null;
+            for (var c=0;c<checks.length;c++){ if (checks[c].deduction>0 && (!weakest || checks[c].deduction>weakest.deduction)) weakest = checks[c]; }
+
+            return { score:score, bandLabel:band.label, bandAction:band.action, bandCloseRate:band.closeRate, tone:band.tone,
+                checks:checks, aiTells:tellsFound, elementCard:elementCard,
+                readyToSend: elementCard.every(function(e){return e.present;}) && score>=7,
+                weakestFix: (score<9 && weakest) ? weakest.detail : null, wordCount:wordCount };
+        }
+
+        var WEAK_SAMPLE = "Hi,\n\nI hope this finds you well. I am a professional freelance writer with over 5 years of experience. I have written for many clients across many industries. I believe I would be a great fit for this project.\n\nI can leverage my expertise to seamlessly transform your content strategy. My innovative approach is a game-changer that will unlock new opportunities for your business. I utilize cutting-edge tools to deliver robust results every time.\n\nI could probably deliver this in around 2 weeks, maybe sooner depending on my workload. I charge $500 for this kind of project, though I might be able to do it for $400 if you need something simpler.\n\nI am passionate about writing and would be honored to work with you.\n\nLet me know if you have any questions!\n\nBest regards";
+
+        function el(id){ return document.getElementById(id); }
+        var input = el('pg-input'), btn = el('pg-grade-btn'), sampleBtn = el('pg-sample-btn'),
+            wc = el('pg-wc'), hint = el('pg-hint'), out = el('pg-results');
+
+        var ICON_OK = '<i class="fa-solid fa-circle-check" style="color:#34d399;font-size:1.05rem;margin-top:3px" aria-hidden="true"></i>';
+        var ICON_NO = '<i class="fa-solid fa-circle-xmark" style="color:#f87171;font-size:1.05rem;margin-top:3px" aria-hidden="true"></i>';
+
+        function render(r){
+            var h = '';
+            h += '<div class="pg-scorecard pg-b-'+r.tone+'">'
+              +  '<div class="pg-row">'
+              +    '<div style="text-align:center;flex-shrink:0">'
+              +      '<div class="pg-score-num pg-t-'+r.tone+'">'+r.score+'<span>/10</span></div>'
+              +      '<div style="font-size:.65rem;letter-spacing:.18em;color:#71717a;margin-top:4px">CONFIDENCE SCORE</div>'
+              +    '</div>'
+              +    '<div style="flex:1;min-width:240px">'
+              +      '<div class="pg-t-'+r.tone+'" style="font-size:1.3rem;font-weight:800">'+esc(r.bandLabel)+'</div>'
+              +      '<div style="color:#d4d4d8;margin-top:2px;font-size:.9rem">'+esc(r.bandAction)+'</div>'
+              +      '<div style="color:#71717a;font-size:.72rem;margin-top:6px">Expected close rate: <b style="color:#d4d4d8">'+esc(r.bandCloseRate)+'</b> · The rule: <b style="color:#f59e0b">never send below 7</b>. A 6 feels good enough. It is not.</div>'
+              +    '</div>'
+              +  '</div>';
+            if (r.weakestFix){
+                h += '<div style="margin-top:1rem;background:rgba(0,0,0,.4);border:1px solid #27272a;border-radius:.75rem;padding:.9rem">'
+                  +  '<div style="font-size:.64rem;font-weight:700;letter-spacing:.16em;color:#f59e0b;margin-bottom:3px">THE ONE FIX THAT MOVES THE SCORE</div>'
+                  +  '<div style="font-size:.85rem;color:#e4e4e7">'+esc(r.weakestFix)+'</div></div>';
+            }
+            h += '</div>';
+
+            if (r.aiTells.length){
+                h += '<div class="pg-panel" style="border-color:rgba(127,29,29,.6);background:rgba(69,10,10,.15)">'
+                  +  '<div style="font-weight:700;color:#f87171;margin-bottom:4px"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px" aria-hidden="true"></i>AI tells detected ('+r.aiTells.length+')</div>'
+                  +  '<div style="font-size:.72rem;color:#71717a;margin-bottom:.75rem">These phrases signal that a machine wrote this, not a human who understood their problem.</div>'
+                  +  '<div>'+r.aiTells.map(function(t){ return '<span class="pg-chip">\u201C'+esc(t.phrase)+'\u201D'+(t.count>1?' \u00D7'+t.count:'')+'</span>'; }).join('')+'</div></div>';
+            }
+
+            if (r.checks.length){
+                var passed = r.checks.filter(function(c){return c.pass;}).length;
+                h += '<div class="pg-panel"><div style="font-weight:700;margin-bottom:.75rem"><i class="fa-solid fa-list-check" style="color:#f59e0b;margin-right:6px" aria-hidden="true"></i>Core Doctrine audit — '+passed+'/'+r.checks.length+' passed</div>'
+                  +  '<div class="pg-list">'+r.checks.map(function(c){
+                        return '<div class="pg-check">'+(c.pass?ICON_OK:ICON_NO)
+                          +'<div><div style="font-size:.85rem;font-weight:600">'+esc(c.label)+(c.deduction>0?'<span class="pg-ded">\u2212'+c.deduction+'</span>':'')+'</div>'
+                          +'<div style="font-size:.8rem;color:#a1a1aa;margin-top:2px">'+esc(c.detail)+'</div>'
+                          +'<div class="pg-doct">'+esc(c.doctrine)+'</div></div></div>';
+                    }).join('')+'</div></div>';
+            }
+
+            if (r.elementCard.length){
+                h += '<div class="pg-panel"><div style="font-weight:700;margin-bottom:4px"><i class="fa-solid fa-clipboard-check" style="color:#f59e0b;margin-right:6px" aria-hidden="true"></i>7-Element Quick Reference Card</div>'
+                  +  '<div style="font-size:.72rem;color:#71717a;margin-bottom:.75rem">Print this. Check every proposal against it before sending.</div>'
+                  +  (r.readyToSend ? '' : '<div style="border:1px solid rgba(180,83,9,.5);background:rgba(69,26,3,.25);border-radius:.7rem;padding:.7rem;font-size:.8rem;color:#fcd34d;margin-bottom:.75rem"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px" aria-hidden="true"></i>Not ready to send — unchecked elements or score below 7.</div>')
+                  +  '<div class="pg-grid">'+r.elementCard.map(function(e){
+                        return '<div class="pg-el'+(e.present?' pg-el-hit':'')+'">'
+                          +'<div class="pg-el-name"'+(e.present?' style="color:#34d399"':'')+'>'+(e.present?'\u2611 ':'\u2610 ')+esc(e.element)+'</div>'
+                          +'<div class="pg-el-q">'+esc(e.question)+'</div></div>';
+                    }).join('')+'</div></div>';
+            }
+
+            h += '<div class="pg-panel" style="text-align:center;border-color:rgba(124,45,18,.5);background:linear-gradient(180deg,rgba(69,26,3,.25),#09090b)">'
+              +  '<div style="font-size:1.3rem;font-weight:800">The score is the diagnosis. The app is the cure.</div>'
+              +  '<div style="color:#a1a1aa;font-size:.85rem;margin:6px 0 1.1rem">ProposalForge AI generates proposals that pass this audit automatically — and learns from every outcome to get sharper.</div>'
+              +  '<a href="https://proposal-forge-black.vercel.app" target="_blank" rel="noopener noreferrer" class="pg-btn-main">Generate your first proposal free \u2192</a>'
+              +  '</div>';
+
+            out.innerHTML = h;
+            out.scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+
+        function wcCount(){ return (input.value.trim().match(/\S+/g)||[]).length; }
+        function upd(){
+            var n = wcCount();
+            wc.textContent = n + (n===1?' word':' words') + (n>400 ? ' — over the 400-word mobile limit' : '');
+            hint.hidden = !(n>0 && n<10);
+            btn.disabled = n < 10;
+        }
+        input.addEventListener('input', upd);
+        sampleBtn.addEventListener('click', function(){ input.value = WEAK_SAMPLE; out.innerHTML=''; upd(); input.focus(); });
+        btn.addEventListener('click', function(){
+            if (wcCount() < 10) return;
+            var t = btn.textContent;
+            btn.disabled = true; btn.textContent = 'Running the doctrine…';
+            window.setTimeout(function(){
+                var r = gradeProposal(input.value);
+                out.innerHTML = '';
+                render(r);
+                btn.textContent = t;
+                upd();
+            }, 400);
+        });
+        upd();
+    })();
+    </script>
+
     <!-- Final CTA -->
     <section class="py-28 bg-gradient-to-b from-zinc-900 to-black text-center">
         <div class="max-w-xl mx-auto px-6">
@@ -261,492 +522,5 @@
         <p>Proposal Forge • Built by Shastrie Ramdhanie in Trinidad 🇹🇹</p>
         <p class="mt-1">AI Sovereignty Movement</p>
     </footer>
-
-    <div id="pg-toast" class="pg-toast" role="status" aria-live="polite"></div>
-
-    <script>
-    (function () {
-        "use strict";
-
-        /* ─── Core Doctrine copy bank ─────────────────────────── */
-        var AI_TELLS = ['delve into','leverage','unlock',"in today's fast-paced world",'seamlessly','transform your','harness the power of','game-changer','revolutionize','cutting-edge','robust','empower','synergy','circle back','touch base'];
-        var HEDGES = ['just','maybe','perhaps','i think','hopefully','could','might'];
-        var RISK_REVERSAL_RE = /revise (?:at no|for free)|no additional cost|no extra cost|at no charge|money[- ]back|don'?t pay (?:until|unless|if)|guarantee|risk (?:is|stays) (?:on|with) me|zero risk|at no cost/i;
-        var FILLER_RE = /i hope this (?:email |message )?finds you well/i;
-        var GENERIC_CTA_RE = /let me know if you have any questions/i;
-        var I_FIRST_RE = /^(i|i'?m|im|i'?ve|ive|i am|i have|my name)\b/i;
-
-        function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-        function splitSentences(t){ return t.replace(/\s+/g,' ').split(/(?<=[.!?])\s+/).map(function(s){return s.trim();}).filter(Boolean); }
-        function splitParagraphs(t){ return t.split(/\n+/).map(function(p){return p.trim();}).filter(Boolean); }
-
-        /* ─── Helpers ─────────────────────────────────────────── */
-        function titleCase(s){ return s.replace(/\w\S*/g, function(w){ return w.charAt(0).toUpperCase() + w.slice(1); }); }
-        function firstName(name){ return (name||'').trim().split(/\s+/)[0] || 'there'; }
-        function extractOutcome(pain){
-            // Try to find a $ figure in the pain description (e.g. "$2,000/month")
-            var m = pain.match(/\$\s?[\d,]+(?:\.\d+)?(?:\s?(?:\/|per\s)?(?:month|mo|week|wk|year|yr|day))?/i);
-            return m ? m[0].replace(/\s+/g,'') : null;
-        }
-        function extractNumber(pain){
-            var m = pain.match(/(\d[\d,]*)\s*(?:hours?|days?|weeks?|months?|%|x)/i);
-            return m ? m[0] : null;
-        }
-        function painKeywords(pain){
-            var kw = [];
-            var lower = pain.toLowerCase();
-            var dict = ['broken','slow','outdated','invisible','invisible','losing','leak','stuck','ghosted','no traffic','weak','generic','manual','repetitive','expensive','frustrating','confusing','clunky','dated','stale','stuck','low conversion','low open rate','unqualified'];
-            dict.forEach(function(d){ if (lower.indexOf(d) !== -1 && kw.indexOf(d) === -1) kw.push(d); });
-            return kw.slice(0,4);
-        }
-        function revenueAnchor(pain){
-            var money = extractOutcome(pain);
-            if (money) {
-                var monthly = money.match(/month|mo\b/i) ? money : null;
-                var yearly = null;
-                if (monthly) {
-                    var num = parseFloat(monthly.replace(/[^0-9.]/g,''));
-                    if (!isNaN(num)) yearly = '$' + Math.round(num * 12).toLocaleString();
-                }
-                return { raw: money, yearly: yearly };
-            }
-            var time = extractNumber(pain);
-            return time ? { raw: time, yearly: null } : null;
-        }
-
-        /* ─── Proposal Generator ─────────────────────────────── */
-        function generateProposal(data){
-            var name = firstName(data.client);
-            var service = data.service;
-            var budget = data.budget;
-            var timeline = data.timeline;
-            var pain = data.pain.trim();
-            var bg = data.bg.trim();
-
-            var anchor = revenueAnchor(pain);
-            var kws = painKeywords(pain);
-
-            /* ----- HOOK ----- */
-            var hook;
-            if (anchor && anchor.yearly) {
-                hook = name + " — your " + (kws[0] || 'situation') + " isn't a " + service.toLowerCase() + " problem. It's a revenue leak, and yours is quietly costing you roughly " + anchor.yearly + " a year.";
-            } else if (anchor) {
-                hook = name + " — your " + (kws[0] || 'situation') + " isn't a " + service.toLowerCase() + " problem. It's a " + anchor.raw + " drain on your business, and it compounds every week you wait.";
-            } else {
-                hook = name + " — your " + (kws[0] || 'situation') + " isn't a " + service.toLowerCase() + " problem. It's a growth ceiling, and every week it stays the way it is, you fall further behind the version of this business you actually want.";
-            }
-
-            /* ----- DIAGNOSIS ----- */
-            var diagnosisLines = [];
-            diagnosisLines.push("Here's what I heard in your brief:");
-            if (pain) {
-                // restate in client's own words, trimmed to ~2 sentences
-                var painSentences = splitSentences(pain);
-                diagnosisLines.push("• " + (painSentences[0] || pain));
-                if (painSentences[1]) diagnosisLines.push("• " + painSentences[1]);
-            }
-            if (kws.length) diagnosisLines.push("• The pattern underneath: " + kws.join(", ") + " — and none of it is a traffic problem. It's a trust-and-clarity problem.");
-            diagnosisLines.push("You don't need a bigger audience. You need the audience you already have to say yes faster.");
-
-            /* ----- MECHANISM ----- */
-            var mech = [];
-            mech.push("Here's how I'd fix it, in three moves:");
-            mech.push("First, we diagnose what's actually happening. I map the exact points where " + (kws[0] || 'the current setup') + " is costing you money — no guessing, no generic audit template.");
-            mech.push("Second, we rebuild the " + service.toLowerCase() + " layer with a single job: turn the visitors or leads you already have into paying clients. Every decision is filtered through that one question.");
-            mech.push("Third, we ship, measure, and iterate. You get a working asset — not a document that sits in a folder.");
-
-            /* ----- PROOF ----- */
-            var proof;
-            if (bg) {
-                // Trim background into 1–2 short lines
-                var bgSentences = splitSentences(bg);
-                proof = bgSentences.slice(0, 2).join(' ');
-            } else {
-                proof = "I've done this before for businesses in the same spot you're in now — and the pattern is always the same: the fix is rarely more traffic, it's clearer positioning and a tighter conversion path.";
-            }
-            proof = "Why me: " + proof;
-
-            /* ----- SCOPE ----- */
-            var scope = [];
-            scope.push("What this actually includes:");
-            scope.push("• Discovery + diagnostic (delivered within 48 hours of kickoff)");
-            scope.push("• " + service + " build, mapped to the specific pains above");
-            scope.push("• One focused revision round — no scope creep, no surprise invoices");
-            scope.push("• A 30-minute walkthrough so you know exactly how to use what we build");
-            scope.push("• " + (timeline ? timeline + " total timeline from kickoff to handoff" : "Clear timeline set at kickoff — no open-ended projects"));
-
-            /* ----- PRICE ----- */
-            var price;
-            if (budget && budget.trim()) {
-                price = "Investment: " + budget.trim() + ". One number, no surprises. If the " + (kws[0] || 'core metric') + " this is meant to fix isn't moving in the direction we agreed by the midpoint, I revise at no extra cost.";
-            } else {
-                price = "Investment: scoped to the outcome, not the hours. If the " + (kws[0] || 'core metric') + " this is meant to fix isn't moving in the direction we agreed by the midpoint, I revise at no extra cost.";
-            }
-
-            /* ----- NEXT STEP ----- */
-            var next = "One question before we start: " + pickNextQuestion(service) + " Reply with a yes or a no — and if it's a yes, I'll send the kickoff link within the hour.";
-
-            /* ----- Assemble (plain, human, client-centered) ----- */
-            var draft = [
-                hook,
-                "",
-                diagnosisLines.join("\n"),
-                "",
-                mech.join("\n"),
-                "",
-                proof,
-                "",
-                scope.join("\n"),
-                "",
-                price,
-                "",
-                next
-            ].join("\n");
-
-            return { draft: draft, anchor: anchor, service: service, name: name };
-        }
-
-        function pickNextQuestion(service){
-            var s = service.toLowerCase();
-            if (s.indexOf('web') !== -1 || s.indexOf('design') !== -1) return "which booking or checkout flow do you want me to look at first?";
-            if (s.indexOf('seo') !== -1) return "what platform is the site on, and do you have Search Console access?";
-            if (s.indexOf('copy') !== -1 || s.indexOf('content') !== -1) return "who are the three customers you'd want me to interview first?";
-            if (s.indexOf('brand') !== -1) return "what's the one feeling you want a first-time visitor to have in the first five seconds?";
-            if (s.indexOf('ads') !== -1 || s.indexOf('media') !== -1) return "what's your current cost-per-acquisition, and what would need to be true for you to double the ad budget?";
-            if (s.indexOf('consult') !== -1 || s.indexOf('coach') !== -1) return "what's the one metric that, if it moved in 30 days, would make this a clear win for you?";
-            return "what does 'this worked' look like 30 days from now, in one number?";
-        }
-
-        /* ─── Audit engine (from System v4.0 Polish audit) ───── */
-        function gradeProposal(raw){
-            var text = raw.trim();
-            var lower = text.toLowerCase();
-            var words = text.match(/\S+/g) || [];
-            var wordCount = words.length;
-            var sentences = splitSentences(text);
-            var paragraphs = splitParagraphs(text);
-
-            if (wordCount < 40){
-                return { score:2, bandLabel:'Broken', bandAction:'Start over — there is not enough here to audit.', bandCloseRate:'Low', tone:'bad', checks:[], aiTells:[], elementCard:[], readyToSend:false,
-                    weakestFix:'The draft is too short to contain the 7 elements.', wordCount:wordCount };
-            }
-
-            var checks = [], deduction = 0;
-            function add(c){ deduction += c.deduction; checks.push(c); }
-
-            var tellsFound = [];
-            for (var i=0;i<AI_TELLS.length;i++){
-                var re = new RegExp(AI_TELLS[i].replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&'),'gi');
-                var m = lower.match(re);
-                if (m && m.length>0) tellsFound.push({phrase:AI_TELLS[i],count:m.length});
-            }
-            var tellHits = tellsFound.reduce(function(s,t){return s+t.count;},0);
-            add({ id:'ai-tells', label:'Zero AI tells', pass:tellsFound.length===0,
-                detail: tellsFound.length===0 ? 'No AI-flagged phrases detected.' : tellsFound.length+' AI-flagged phrase'+(tellsFound.length>1?'s':'')+' found. Rewrite immediately.',
-                deduction: Math.min(tellHits*1.5,3),
-                doctrine:'These phrases signal that a machine wrote this, not a human who understood their problem.' });
-
-            var opensWithI = I_FIRST_RE.test(sentences[0]||'');
-            add({ id:'opener', label:'Never open with "I"', pass:!opensWithI,
-                detail: opensWithI ? 'The first sentence opens with "I".' : 'The opening leads with the client, not you.',
-                deduction: opensWithI?1:0,
-                doctrine:'You are not hired to talk about yourself. You are hired to solve the pain they are currently experiencing.' });
-
-            var firstTwo = (sentences[0]||'')+' '+(sentences[1]||'');
-            var hookClientCentered = /\byou\b|\byour\b/i.test(firstTwo);
-            add({ id:'hook', label:'Hook makes the client feel SEEN', pass:hookClientCentered,
-                detail: hookClientCentered ? "The first two sentences speak to the client's situation." : 'The opening never references the client or their problem.',
-                deduction: hookClientCentered?0:1,
-                doctrine:'Problem-first openings build immediate relevance.' });
-
-            var youCount = (text.match(/\byou\b|\byour\b|\byou're\b/gi)||[]).length;
-            var iCount = (text.match(/\bI\b|\bmy\b|\bme\b|\bmine\b/gi)||[]).length;
-            var clientCentered = youCount >= iCount;
-            add({ id:'you-focus', label:'Focus on "you," not "I"', pass:clientCentered,
-                detail: youCount+' client references vs '+iCount+' self-references.',
-                deduction: clientCentered?0:1,
-                doctrine:"Your proposal is a mirror for the client's situation, not a stage for your biography." });
-
-            var hedgeHits = 0;
-            for (var h=0;h<HEDGES.length;h++){
-                var hre = HEDGES[h]==='i think' ? /i think/gi : new RegExp('\\b'+HEDGES[h]+'\\b','gi');
-                var hm = lower.match(hre);
-                hedgeHits += hm ? hm.length : 0;
-            }
-            add({ id:'hedges', label:'No hedge words', pass:hedgeHits===0,
-                detail: hedgeHits===0 ? 'Certainty language throughout.' : hedgeHits+' hedge word'+(hedgeHits>1?'s':'')+' — replace with certainty.',
-                deduction: Math.min(hedgeHits*0.25,1),
-                doctrine:'Hedge words signal amateurism. Certainty signals expertise.' });
-
-            var hasRiskReversal = RISK_REVERSAL_RE.test(text);
-            add({ id:'risk-reversal', label:'Risk is reversed', pass:hasRiskReversal,
-                detail: hasRiskReversal ? 'Explicit risk reversal found.' : 'No risk reversal.',
-                deduction: hasRiskReversal?0:1,
-                doctrine:'Clients fear making a mistake. Remove that fear, and they move.' });
-
-            var priceMatches = text.match(/\$\s?\d[\d,]*(?:\.\d+)?/g) || [];
-            var priceOnce = priceMatches.length===1;
-            add({ id:'price', label:'Single confident price', pass:priceOnce,
-                detail: priceMatches.length===0 ? 'No price found.' : priceOnce ? 'One confident price.' : priceMatches.length+' price mentions.',
-                deduction: priceMatches.length===0 ? 1 : priceOnce ? 0 : 0.5,
-                doctrine:'A clear anchor signals confidence. Ranges invite negotiation.' });
-
-            var lastSentence = sentences[sentences.length-1] || '';
-            var genericCta = GENERIC_CTA_RE.test(lastSentence);
-            var endsWithQuestion = lastSentence.trim().endsWith('?');
-            var endingPass = endsWithQuestion && !genericCta;
-            add({ id:'ending', label:'Ends with one expert question', pass:endingPass,
-                detail: genericCta ? 'Ends with "Let me know if you have any questions" — instant delete.' : endsWithQuestion ? 'Closes with a question that invites dialogue.' : 'No closing question.',
-                deduction: genericCta ? 1.5 : endsWithQuestion ? 0 : 1,
-                doctrine:'Specific questions encourage dialogue and demonstrate insight.' });
-
-            var hasFiller = FILLER_RE.test(text);
-            add({ id:'filler', label:'No generic filler', pass:!hasFiller,
-                detail: hasFiller ? '"I hope this finds you well" = instant delete.' : 'No template filler detected.',
-                deduction: hasFiller?1:0,
-                doctrine:'Overly polished language triggers skepticism.' });
-
-            var hasTimeframe = /(?:within|in \d+|\d+\s*(?:hours?|days?|weeks?|months?)|%|\d+x)/i.test(text);
-            var specific = /\d/.test(text) && hasTimeframe;
-            add({ id:'specificity', label:'Specific numbers and timeframes', pass:specific,
-                detail: specific ? 'Concrete numbers and deadlines present.' : 'Add one specific number or timeframe.',
-                deduction: specific?0:0.5,
-                doctrine:'Specificity creates confidence.' });
-
-            var longParagraph = paragraphs.some(function(p){ return splitSentences(p).length > 3; });
-            var tooLong = wordCount > 400;
-            add({ id:'mobile', label:'Mobile-scan friendly', pass:!longParagraph && !tooLong,
-                detail: tooLong ? wordCount+' words — keep under 400.' : longParagraph ? 'A paragraph runs longer than 3 sentences.' : 'Scannable at '+wordCount+' words.',
-                deduction: tooLong && longParagraph ? 1 : (tooLong||longParagraph) ? 0.5 : 0,
-                doctrine:'If they cannot scan it in thirty seconds, they will not read it.' });
-
-            var score = Math.max(1, Math.min(10, Math.round(10-deduction)));
-            var band = score>=9 ? {label:'Exceptional',action:'Send immediately.',closeRate:'Strong',tone:'good'}
-                     : score>=7 ? {label:'Strong',action:'Send after quick fixes.',closeRate:'Good',tone:'ok'}
-                     : score>=5 ? {label:'Weak',action:'Do not send. Fix the weakest element.',closeRate:'Moderate',tone:'warn'}
-                     : {label:'Broken',action:'Start over using the 7-Element structure.',closeRate:'Low',tone:'bad'};
-
-            var hasBullets = /^\s*[-•*]\s+/m.test(text);
-            var elementCard = [
-                { element:'HOOK', question:'Did I lead with the hidden problem framed as loss?', present: hookClientCentered && !opensWithI },
-                { element:'DIAGNOSIS', question:"Did I restate the client's words?", present: /you (?:told|mentioned|said)|your (?:current|last|team)|as you/i.test(text) },
-                { element:'MECHANISM', question:'Did I explain HOW in 3 steps?', present: /first,|step 1|my process|the process|the system|framework|here'?s how/i.test(text) },
-                { element:'PROOF', question:'Did I cite one specific result?', present: /%|\d+x|from \d+ to \d+|increased|improved|grew|result/i.test(text) },
-                { element:'SCOPE', question:'Did I list exact deliverables?', present: hasBullets || /deliverables?|timeline|includes/i.test(text) },
-                { element:'PRICE', question:'Did I give one confident number?', present: priceMatches.length===1 },
-                { element:'NEXT STEP', question:'Did I ask a yes/no + expert question?', present: endingPass || /reply|book|schedule|respond|say yes/i.test(text) }
-            ];
-
-            var weakest = null;
-            for (var c=0;c<checks.length;c++){ if (checks[c].deduction>0 && (!weakest || checks[c].deduction>weakest.deduction)) weakest = checks[c]; }
-
-            return { score:score, bandLabel:band.label, bandAction:band.action, bandCloseRate:band.closeRate, tone:band.tone,
-                checks:checks, aiTells:tellsFound, elementCard:elementCard,
-                readyToSend: elementCard.every(function(e){return e.present;}) && score>=7,
-                weakestFix: (score<9 && weakest) ? weakest.detail : null, wordCount:wordCount };
-        }
-
-        /* ─── DOM wiring ──────────────────────────────────────── */
-        var form = document.getElementById('forge-form');
-        var out = document.getElementById('fg-output');
-        var errEl = document.getElementById('fg-error');
-        var submitBtn = document.getElementById('fg-submit');
-        var toast = document.getElementById('pg-toast');
-
-        var fields = {
-            client: document.getElementById('fg-client'),
-            service: document.getElementById('fg-service'),
-            budget: document.getElementById('fg-budget'),
-            timeline: document.getElementById('fg-timeline'),
-            pain: document.getElementById('fg-pain'),
-            bg: document.getElementById('fg-bg')
-        };
-
-        function toastMsg(msg){
-            toast.textContent = msg;
-            toast.classList.add('show');
-            clearTimeout(toast._t);
-            toast._t = setTimeout(function(){ toast.classList.remove('show'); }, 2200);
-        }
-
-        function clearErrors(){
-            Object.keys(fields).forEach(function(k){ fields[k].classList.remove('pg-err'); });
-            errEl.hidden = true;
-        }
-
-        function validate(){
-            clearErrors();
-            var missing = [];
-            if (!fields.client.value.trim()) missing.push('Client Name');
-            if (!fields.pain.value.trim()) missing.push("Client's Pain Points");
-            if (!fields.bg.value.trim()) missing.push('Your Background & Strengths');
-            if (missing.length){
-                missing.forEach(function(label){
-                    if (label === 'Client Name') fields.client.classList.add('pg-err');
-                    if (label === "Client's Pain Points") fields.pain.classList.add('pg-err');
-                    if (label === 'Your Background & Strengths') fields.bg.classList.add('pg-err');
-                });
-                errEl.textContent = 'Please fill in: ' + missing.join(', ');
-                errEl.hidden = false;
-                return false;
-            }
-            return true;
-        }
-
-        var ICON_OK = '<i class="fa-solid fa-circle-check" style="color:#34d399;font-size:1.05rem;margin-top:3px" aria-hidden="true"></i>';
-        var ICON_NO = '<i class="fa-solid fa-circle-xmark" style="color:#f87171;font-size:1.05rem;margin-top:3px" aria-hidden="true"></i>';
-
-        function renderResult(result){
-            var draft = result.draft;
-            var audit = gradeProposal(draft);
-            var h = '';
-
-            /* Proposal card */
-            h += '<div class="pg-panel" style="background:#0f0f0f;border-color:#3f3f3f">'
-              +  '<div class="flex flex-wrap items-center justify-between gap-3 mb-4">'
-              +    '<div class="flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i><span class="font-semibold">Your generated proposal</span></div>'
-              +    '<div class="flex gap-2">'
-              +      '<button type="button" class="pg-btn-ghost !py-2 !px-4 !text-xs" data-copy>Copy</button>'
-              +      '<button type="button" class="pg-btn-ghost !py-2 !px-4 !text-xs" data-download>Download .txt</button>'
-              +    '</div>'
-              +  '</div>'
-              +  '<div class="pg-proposal" data-proposal>' + esc(draft) + '</div>'
-              +  '<p class="text-xs text-zinc-500 mt-3">This is a starting draft. Add your voice, your specific client details, and one real result you can point to before sending.</p>'
-              + '</div>';
-
-            /* Scorecard */
-            h += '<div class="pg-scorecard pg-b-'+audit.tone+'">'
-              +  '<div class="pg-row">'
-              +    '<div style="text-align:center;flex-shrink:0">'
-              +      '<div class="pg-score-num pg-t-'+audit.tone+'">'+audit.score+'<span>/10</span></div>'
-              +      '<div style="font-size:.65rem;letter-spacing:.18em;color:#71717a;margin-top:4px">CONFIDENCE SCORE</div>'
-              +    '</div>'
-              +    '<div style="flex:1;min-width:240px">'
-              +      '<div class="pg-t-'+audit.tone+'" style="font-size:1.3rem;font-weight:800">'+esc(audit.bandLabel)+'</div>'
-              +      '<div style="color:#d4d4d8;margin-top:2px;font-size:.9rem">'+esc(audit.bandAction)+'</div>'
-              +      '<div style="color:#71717a;font-size:.72rem;margin-top:6px">Expected close rate: <b style="color:#d4d4d8">'+esc(audit.bandCloseRate)+'</b> · The rule: <b style="color:#f59e0b">never send below 7</b>.</div>'
-              +    '</div>'
-              +  '</div>';
-            if (audit.weakestFix){
-                h += '<div style="margin-top:1rem;background:rgba(0,0,0,.4);border:1px solid #27272a;border-radius:.75rem;padding:.9rem">'
-                  +  '<div style="font-size:.64rem;font-weight:700;letter-spacing:.16em;color:#f59e0b;margin-bottom:3px">THE ONE FIX THAT MOVES THE SCORE</div>'
-                  +  '<div style="font-size:.85rem;color:#e4e4e7">'+esc(audit.weakestFix)+'</div></div>';
-            }
-            h += '</div>';
-
-            /* AI tells */
-            if (audit.aiTells.length){
-                h += '<div class="pg-panel" style="border-color:rgba(127,29,29,.6);background:rgba(69,10,10,.15)">'
-                  +  '<div style="font-weight:700;color:#f87171;margin-bottom:4px"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px"></i>AI tells detected ('+audit.aiTells.length+')</div>'
-                  +  '<div>'+audit.aiTells.map(function(t){ return '<span class="pg-chip">\u201C'+esc(t.phrase)+'\u201D'+(t.count>1?' \u00D7'+t.count:'')+'</span>'; }).join('')+'</div></div>';
-            }
-
-            /* Doctrine checks */
-            var passed = audit.checks.filter(function(c){return c.pass;}).length;
-            h += '<div class="pg-panel"><div style="font-weight:700;margin-bottom:.75rem"><i class="fa-solid fa-list-check" style="color:#f59e0b;margin-right:6px"></i>Core Doctrine audit — '+passed+'/'+audit.checks.length+' passed</div>'
-              +  '<div class="pg-list">'+audit.checks.map(function(c){
-                    return '<div class="pg-check">'+(c.pass?ICON_OK:ICON_NO)
-                      +'<div><div style="font-size:.85rem;font-weight:600">'+esc(c.label)+(c.deduction>0?'<span class="pg-ded">\u2212'+c.deduction+'</span>':'')+'</div>'
-                      +'<div style="font-size:.8rem;color:#a1a1aa;margin-top:2px">'+esc(c.detail)+'</div>'
-                      +'<div class="pg-doct">'+esc(c.doctrine)+'</div></div></div>';
-                }).join('')+'</div></div>';
-
-            /* 7-Element card */
-            h += '<div class="pg-panel"><div style="font-weight:700;margin-bottom:4px"><i class="fa-solid fa-clipboard-check" style="color:#f59e0b;margin-right:6px"></i>7-Element Quick Reference Card</div>'
-              +  (audit.readyToSend ? '' : '<div style="border:1px solid rgba(180,83,9,.5);background:rgba(69,26,3,.25);border-radius:.7rem;padding:.7rem;font-size:.8rem;color:#fcd34d;margin:.5rem 0 .75rem"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px"></i>Not ready to send — unchecked elements or score below 7.</div>')
-              +  '<div class="pg-grid">'+audit.elementCard.map(function(e){
-                    return '<div class="pg-el'+(e.present?' pg-el-hit':'')+'">'
-                      +'<div class="pg-el-name"'+(e.present?' style="color:#34d399"':'')+'>'+(e.present?'\u2611 ':'\u2610 ')+esc(e.element)+'</div>'
-                      +'<div class="pg-el-q">'+esc(e.question)+'</div></div>';
-                }).join('')+'</div></div>';
-
-            /* CTA */
-            h += '<div class="pg-panel" style="text-align:center;border-color:rgba(124,45,18,.5);background:linear-gradient(180deg,rgba(69,26,3,.25),#09090b)">'
-              +  '<div style="font-size:1.3rem;font-weight:800">Want the full live-learning workflow?</div>'
-              +  '<div style="color:#a1a1aa;font-size:.85rem;margin:6px 0 1.1rem">3 free proposals in the app — plus the prompts, the pricing ladder, and the Learn Route that make every future proposal sharper.</div>'
-              +  '<a href="https://proposal-forge-black.vercel.app" target="_blank" rel="noopener noreferrer" class="pg-btn-main">Open ProposalForge AI \u2192</a>'
-              + '</div>';
-
-            out.innerHTML = h;
-
-            /* Wire copy / download */
-            var proposalEl = out.querySelector('[data-proposal]');
-            var copyBtn = out.querySelector('[data-copy]');
-            var dlBtn = out.querySelector('[data-download]');
-            if (copyBtn && proposalEl){
-                copyBtn.addEventListener('click', function(){
-                    var text = proposalEl.textContent;
-                    if (navigator.clipboard && navigator.clipboard.writeText){
-                        navigator.clipboard.writeText(text).then(function(){ toastMsg('Proposal copied to clipboard'); });
-                    } else {
-                        var ta = document.createElement('textarea');
-                        ta.value = text; document.body.appendChild(ta); ta.select();
-                        try { document.execCommand('copy'); toastMsg('Proposal copied'); } catch(e){ toastMsg('Copy failed'); }
-                        document.body.removeChild(ta);
-                    }
-                });
-            }
-            if (dlBtn && proposalEl){
-                dlBtn.addEventListener('click', function(){
-                    var text = proposalEl.textContent;
-                    var blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-                    var url = URL.createObjectURL(blob);
-                    var a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'proposal-' + (result.name || 'draft').toLowerCase().replace(/[^a-z0-9]+/g,'-') + '.txt';
-                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-                    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
-                    toastMsg('Proposal downloaded');
-                });
-            }
-
-            out.scrollIntoView({ behavior:'smooth', block:'start' });
-        }
-
-        form.addEventListener('submit', function(e){
-            e.preventDefault();
-            if (!validate()) return;
-
-            var data = {
-                client: fields.client.value,
-                service: fields.service.value,
-                budget: fields.budget.value,
-                timeline: fields.timeline.value,
-                pain: fields.pain.value,
-                bg: fields.bg.value
-            };
-
-            var originalLabel = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="pg-spinner"></span>Forging your proposal…';
-            out.innerHTML = '';
-
-            /* Small delay so the "AI is thinking" moment feels real */
-            setTimeout(function(){
-                try {
-                    var result = generateProposal(data);
-                    renderResult(result);
-                } catch(err){
-                    console.error(err);
-                    errEl.textContent = 'Something went wrong generating the proposal. Please try again.';
-                    errEl.hidden = false;
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalLabel;
-                }
-            }, 900);
-        });
-
-        /* Clear error styling as user fixes inputs */
-        Object.keys(fields).forEach(function(k){
-            fields[k].addEventListener('input', function(){
-                fields[k].classList.remove('pg-err');
-            });
-            fields[k].addEventListener('change', function(){
-                fields[k].classList.remove('pg-err');
-            });
-        });
-    })();
-    </script>
 </body>
 </html>
